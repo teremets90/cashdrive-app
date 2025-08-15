@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CashDrive - Приложение для челленджей
 
-## Getting Started
+Веб-приложение для управления челленджами поездок с системой ставок и рейтингов.
 
-First, run the development server:
+## 🚀 Быстрый старт
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Локальная разработка
+
+1. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
+
+2. **Настройте базу данных:**
+   ```bash
+   npx prisma generate
+   npx prisma db push
+   npm run db:seed
+   ```
+
+3. **Запустите сервер разработки:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Откройте [http://localhost:3000](http://localhost:3000)**
+
+### Тестовые аккаунты
+
+- **Администратор:** `+79001234567` / `admin123`
+- **Пользователь:** `+79001234568` / `user123`
+
+## 🛠 Технологии
+
+- **Frontend:** Next.js 15, React, TypeScript, Tailwind CSS
+- **Backend:** Next.js API Routes
+- **База данных:** SQLite (разработка) / PostgreSQL (продакшен)
+- **ORM:** Prisma
+- **Аутентификация:** JWT токены
+
+## 📦 Развертывание
+
+### Railway (Рекомендуется)
+
+1. **Подключите репозиторий к Railway**
+2. **Добавьте PostgreSQL базу данных**
+3. **Настройте переменные окружения:**
+   ```
+   DATABASE_URL=postgresql://...
+   JWT_SECRET=your-super-secret-key
+   NODE_ENV=production
+   ```
+
+### Vercel
+
+1. **Подключите репозиторий к Vercel**
+2. **Настройте внешнюю базу данных (Neon/Supabase)**
+3. **Настройте переменные окружения**
+
+## 🔧 Скрипты
+
+- `npm run dev` - Запуск сервера разработки
+- `npm run build` - Сборка для продакшена
+- `npm run start` - Запуск продакшен сервера
+- `npm run db:generate` - Генерация Prisma клиента
+- `npm run db:push` - Применение схемы к базе данных
+- `npm run db:seed` - Заполнение базы тестовыми данными
+
+## 📁 Структура проекта
+
+```
+src/
+├── app/                 # Next.js App Router
+│   ├── api/            # API endpoints
+│   ├── admin/          # Админ-панель
+│   ├── challenges/     # Страница челленджей
+│   ├── profile/        # Профиль пользователя
+│   └── ratings/        # Рейтинги
+├── components/         # React компоненты
+├── lib/               # Утилиты и конфигурация
+└── generated/         # Сгенерированные файлы Prisma
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔒 Безопасность
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- JWT токены для аутентификации
+- Валидация входных данных с Zod
+- Защищенные API endpoints
+- Хеширование паролей с bcrypt
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📝 Лицензия
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

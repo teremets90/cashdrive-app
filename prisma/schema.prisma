@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum ChallengeType {
+  daily
+  monthly
+}
+
+model User {
+  id            String     @id @default(uuid())
+  name          String
+  birthDate     DateTime
+  phone         String     @unique
+  passwordHash  String
+  photoUrl      String?
+  registeredAt  DateTime   @default(now())
+  isAdmin       Boolean    @default(false)
+  isBlocked     Boolean    @default(false)
+
+  progresses    Progress[]
+}
+
+model Challenge {
+  id           String        @id @default(uuid())
+  type         ChallengeType
+  title        String
+  targetTrips  Int
+  startDate    DateTime
+  endDate      DateTime
+  isActive     Boolean       @default(true)
+  isArchived   Boolean       @default(false)
+
+  progresses   Progress[]
+}
+
+model Progress {
+  userId       String
+  challengeId  String
+  currentTrips Int        @default(0)
+  isCompleted  Boolean    @default(false)
+  lastUpdated  DateTime   @default(now())
+  betAmount    Int        @default(0)
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  challenge Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, challengeId])
+}
