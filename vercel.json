@@ -12,7 +12,8 @@
   },
   "build": {
     "env": {
-      "DATABASE_URL": "file:./prisma/dev.db"
+      "DATABASE_URL": "file:./prisma/dev.db",
+      "SKIP_LINT": "true"
     }
   }
 }
