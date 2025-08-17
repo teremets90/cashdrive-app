@@ -16,9 +16,9 @@ build/
 .env.test.local
 .env.production.local
 
-# Database
-prisma/dev.db
-prisma/dev.db-journal
+# Database (временно включим для деплоя)
+# prisma/dev.db
+# prisma/dev.db-journal
 
 # Uploads
 public/uploads/

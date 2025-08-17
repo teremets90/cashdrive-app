@@ -49,7 +49,7 @@ model Progress {
   currentTrips Int      @default(0)
   isCompleted  Boolean  @default(false)
   lastUpdated  DateTime @default(now())
-  betAmount    Int      @default(0) // Ставка в рублях
+  betAmount    Int      @default(0)
 
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   challenge Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
